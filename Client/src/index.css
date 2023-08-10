@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.Navbar-a{
+    text-decoration: none;
+    color: text-black-700;
+  background-image: linear-gradient(90deg,grey,black);
+  background-size: 0% 3px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 300ms ease-in-out,color 300ms ease-in-out  ,opacity 100ms ease-in-out;
+  opacity: 0.7;
+  font-weight: bold;
+ margin: 20px;
+  }
+.Navbar-a:hover{
+    background-size: 100% 3px; 
+    color:black;  
+  opacity: 1;
+  }
+
+
+
+  
