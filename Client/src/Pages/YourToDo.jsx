@@ -14,10 +14,10 @@ const YourToDO = (props) => {
     );
   };
   return (
-    <div>
+    <div className="relative " >
       <Navbar />
 
-      <div className="text-center mt-[50px] flex justify-center items-center flex-col">
+      <div className=" text-center flex justify-center items-center flex-col overflow-hidden  ">
         {props.allLists.map((listVal) => {
           return (
             <div key={listVal.title} className="h-auto min-w-[300px] min-h-[75px] max-w-[300px] m-[20px] inline-block mx-[0px] relative p-[2rem] break-all hover:shadow-2xl  border-l-[5px] border-[#555] ">
