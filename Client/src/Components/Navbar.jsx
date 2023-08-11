@@ -12,7 +12,7 @@ const Navbar = () => {
     })
   },[]);
     return (
-      <div className="p-[10px] max-w-[900px] my-[0] mx-auto fixed top-[0] left-[50%] translate-x-[-50%] z-[100]  ">
+      <div className="p-[10px] max-w-[900px] my-[0] mx-auto fixed top-[0] left-[50%] translate-x-[-50%] z-[100] backdrop-blur-2xl ">
         <div className="flex justify-between mb-[50px] ">
          <Link  to="/" className="text-3xl font-bold inline-block relative left-[0] mt-[15px]">ListSync</Link>
         <nav className="flex gap-[15px] ">
