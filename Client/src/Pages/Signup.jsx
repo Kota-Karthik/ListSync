@@ -7,36 +7,14 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  async function registerForm(e) {
-    e.preventDefault();
-    
-    try {
-      const response = await fetch("http://localhost:4000/register", {
-        method: "POST",
-        body: JSON.stringify({ username, password }),
-        headers: { "Content-Type": "application/json" },
-      });
-  
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-  
-    } catch (error) {
-      console.error("Error:", error);
-    }
-    setUsername("");
-    setPassword("");
-    setConfirmPassword("");
-
-
-  }
+ 
   
   return (
     <div>
       <Navbar />
       <form
-        className="flex flex-col w-[400px] mx-auto shadow-gray-800"
-        onSubmit={registerForm}
+        className="flex flex-col w-[400px] mx-auto mt-[150px] shadow-gray-800"
+        // onSubmit={registerForm}
       >
         <div className="mx-auto mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
           Register

@@ -1,23 +1,64 @@
 import Navbar from "../Components/Navbar";
 import WarningBox from "../Components/WarningBox";
-import { Form, FormControl, Button } from "react-bootstrap";
-import Clock from "../Components/Clock";
-import style from "../Components/Timer.module.css";
+
 const AddToDo = (props) => {
+  
+  const postlist = {"title" : props.formData.title,"targetDate": props.formData.targetDate};
+ 
+  const handleAddToDo = () => {
+    addList();
+    fetch(`http://localhost:3000/todo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postlist),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (data.status === "Success") {
+          console.log("Registered successfully");
+        } else if (data.status === "Fail") {
+          console.log(data.message);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        console.log(postlist);
+        console.log("An error occurred while registering.");
+      });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddToDo();
+  };
   function displayWarning(display) {
     document.getElementById("WarningBox-h3").style.display = display;
   }
+  function displayWarning2(display) {
+    document.getElementById("WarningBox-h3-2").style.display = display;
+  }
+  const today = new Date().getTime();
 
   const addList = () => {
     if (props.formData.title.trim() === "") {
       displayWarning("block");
+    } else if (new Date(props.formData.targetDate).getTime() <= today) {
+      displayWarning2("block");
     } else {
       props.setallLists([...props.allLists, props.formData]);
-      props.setFormData({ ...props.formData, title: ""});
-      props.setFormData({ ...props.formData, targetDate:"" });
+      props.setFormData({ ...props.formData, title: "" });
+      props.setFormData({ ...props.formData, targetDate: "" });
 
-       console.log(props.allLists);
+      console.log(props.allLists);
       displayWarning("none");
+      displayWarning2("none");
     }
   };
 
@@ -37,11 +78,14 @@ const AddToDo = (props) => {
 
         <input
           className="h-[40px] w-[300px] block"
-          placeholder="new date"
+          placeholder="Enter your target to complete to-do"
           type="date"
           // value={props.formdata.targetDate}
           onChange={(e) => {
-            props.setFormData({ ...props.formData, targetDate: e.target.value });
+            props.setFormData({
+              ...props.formData,
+              targetDate: e.target.value,
+            });
           }}
         />
 
@@ -49,7 +93,7 @@ const AddToDo = (props) => {
           id="AddToDo-button"
           className="w-[100px] h-[30px] border-solid border-2 border-[#555] bg-[#555] text-[#fff] hover:bg-[black] hover:text-[white] hover:border-[black] hover:shadow-xl"
           type="submit"
-          onClick={addList}
+          onClick={handleSubmit}
         >
           Add
         </button>

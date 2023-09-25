@@ -9,48 +9,16 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 const [redirect,setRedirect]=useState(false);
-// const {setUserInfo} = useContext(UserContext);
 
-  async function loginF(e) {
-    e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:4000/login", {
-        method: "POST",
-        body: JSON.stringify({ username, password }),
-        headers: { "Content-Type": "application/json" },
-        credentials: 'include',
-      });
-      console.log("Response:", response.status);
-     //  if (!response.ok) {
-     //    throw new Error("Network response was not ok");
-     //  }else{
-     //      setRedirect(true);
-     //  }
-     if (response.ok) {
-          response.json().then(userInfo => {
-            setUserInfo(userInfo);
-            setRedirect(true);
-          });
-        } else {
-          alert('wrong credentials');
-        }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-    setUsername("");
-    setPassword("");
-  }
-  if(redirect){
-     return <Navigate to={'/'} />;
-  }
+  
   
   return (
     <div>
       <Navbar />
       <form
-        className="flex flex-col w-[400px] mx-auto shadow-gray-800"
-        onSubmit={loginF}
+        className="flex flex-col w-[400px] mx-auto mt-[150px] shadow-gray-800"
+        // onSubmit={loginF}
       >
         <div className="mx-auto mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl ">
           Login

@@ -1,18 +1,9 @@
-import { useEffect, useState } from "react";
+
 import {  Link } from "react-router-dom";
 const Navbar = () => {
-  const [username,setUsername]=useState(null);
-  useEffect(()=>{
-    fetch('http://localhost:4000/profile',{
-      credentials:'include',
-    }).then((response)=>{
-      response.json().then((userInfo)=>{
-
-      })
-    })
-  },[]);
+ 
     return (
-      <div className="p-[10px] max-w-[900px] my-[0] mx-auto fixed top-[0] left-[50%] translate-x-[-50%] z-[100] backdrop-blur-2xl ">
+      <div className="p-[10px] max-w-[900px] my-[0] mx-auto fixed top-[0] left-[50%] translate-x-[-50%] bg-white z-[100]  ">
         <div className="flex justify-between mb-[50px] ">
          <Link  to="/" className="text-3xl font-bold inline-block relative left-[0] mt-[15px]">ListSync</Link>
         <nav className="flex gap-[15px] ">
@@ -26,17 +17,17 @@ const Navbar = () => {
             
             </li>
             <li className="inline-block ml-[5px] text-[15px] list-none px-[0px] py-[20px]  ">
-            <Link to="/your-to-do's" className="Navbar-a">Your To-Do's</Link>
+            <Link to="/your-to-do's" className="Navbar-a">Your To-Dos</Link>
              
             </li>
-            <li className="inline-block ml-[5px] text-[15px] list-none px-[0px] py-[20px]  ">
+            {/* <li className="inline-block ml-[5px] text-[15px] list-none px-[0px] py-[20px]  ">
             <Link to="/about" className="Navbar-a">About</Link>
             
             </li>
             <li className="inline-block ml-[5px] text-[15px] list-none px-[0px] py-[20px]  ">
             <Link to="/contact-us" className="Navbar-a">Contact us</Link>
               
-            </li>
+            </li> */}
             <li className="inline-block ml-[5px] text-[15px] list-none px-[0px] py-[20px]  ">
             <Link to="/log-in" className="Navbar-a ">Log in</Link>
               

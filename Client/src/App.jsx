@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {Route,Routes} from "react-router-dom"
 import { BrowserRouter } from 'react-router-dom';
+import { useEffect } from "react";
 
 
 
@@ -17,6 +18,42 @@ function App() {
   const AddToDoButton=document.getElementById("AddToDo-button");
 
         const [allLists,setallLists]=useState([]);
+        const getAllLists=()=>{
+          fetch(`http://localhost:3000/todo`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return res.json();
+          })
+          .then((data2) => {
+            const { results,data,status } = data2;
+            setallLists(data.lists);
+            console.log(data.lists);
+            // console.log(data2)
+            // console.log(allLists);
+            
+            if (data.status === "Success") {
+              console.log("Registered successfully");
+            } else if (data.status === "Fail") {
+              console.log(data.message);
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            console.log("An error occurred while registering.");
+          });
+        }
+        useEffect(() =>{
+          getAllLists()
+        },[])
+
         // const [allDates,setallDates]=useState([]);
         const [formData,setFormData]=useState({
           title:"",
