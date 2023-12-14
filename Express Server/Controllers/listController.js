@@ -42,3 +42,11 @@ exports.getAllLists = catchAsync(async (req, res, next) => {
         }
     });
 });
+
+exports.deleteList = catchAsync(async (req, res, next) => {
+    await List.findByIdAndDelete(req.params.listId);
+    res.status(200).json({
+        status: 'success',
+        data: null,
+    });
+});

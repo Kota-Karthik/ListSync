@@ -69,7 +69,7 @@ exports.deleteUser = async (req, res) => {
     });
   } catch (err) {
     console.log("unable to delete user");
-    res.status(200).json({
+    res.status(400).json({
       status: "success",
       message: err,
     });

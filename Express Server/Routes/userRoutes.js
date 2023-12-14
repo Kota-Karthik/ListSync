@@ -15,6 +15,7 @@ router.post('/login', authController.login);
 router.post('/forgotPassword',passwordController.forgotPassword);
 router.post('/todo/newList/:encryptedData',listController.createList);
 router.get("/todo/getAllLists/:encryptedData",listController.getAllLists);
+router.delete("/todo/deleteList/:listId",listController.deleteList);
 router.route("/:id").get(userController.getUniqueUser).delete(userController.deleteUser);
 router.route("/:encryptedData").patch(passwordController.updatePassword);
 
