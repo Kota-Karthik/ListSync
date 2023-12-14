@@ -1,6 +1,12 @@
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const navigateTo = (address) => {
+      navigate(address);
+  };
   const jwt = Cookies.get('jwt');
   const encryptedData = Cookies.get('encryptedData');
   const handleLogout = () => {
@@ -10,7 +16,6 @@ const Navbar = () => {
     window.location.reload();
     navigateTo('/login');
     
-
 }
   const toggleMenu = () => {
     const navbar = document.getElementById('navbar-default');
@@ -51,7 +56,7 @@ const Navbar = () => {
               {(jwt) && <li className="py-2 px-3 "><Link to="/your-to-do's" >Your To-Dos</Link></li>}
               {(!jwt) && <li className="py-2 px-3 "><Link to="/log-in">Login</Link></li>}
               {(!jwt) && <li className="py-2 px-3 "><Link to="/register">Sign Up</Link></li>}
-              {(jwt) && <button className="py-2 px-3  shadow-lg rounded-lg translate-y-[-5px]  bg-[#18A0A9] text-[#FFFFFF] font-medium p-[5px]" onClick={handleLogout}>Logout</button>}
+              {(jwt) && <button className="py-2 px-3  shadow-lg rounded-lg translate-y-[-5px]  bg-[#555555] text-[#FFFFFF] font-medium p-[5px]" onClick={handleLogout}>Logout</button>}
             </ul>
           </div>
         </div>
