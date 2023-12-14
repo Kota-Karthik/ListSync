@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Route,Routes} from "react-router-dom"
 import { BrowserRouter } from 'react-router-dom';
 import { useEffect } from "react";
-import { ToastContainer } from 'react-toastify';
+
 
 
 import Navbar from "./Components/Navbar";
@@ -57,7 +57,6 @@ function App() {
         // const [allDates,setallDates]=useState([]);
         const [formData,setFormData]=useState({
           title:"",
-          description:"",
           targetDate:""
 
         });
@@ -73,21 +72,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     <Routes>
-  
-
       <Route path="/" element={ <Home count={count}/>}/>
       <Route path="/home" element={ <Home count={count}/>}/>
       <Route path="/add-to-do" element={ <AddToDo formData={formData} setFormData={setFormData} count={count} AddToDoButton={AddToDoButton} list={list} setList={setList} allLists={allLists} setallLists={setallLists} deadline={deadline} setDeadline={setDeadline} newDeadline={newDeadline} setNewDeadline={setNewDeadline} changeDeadline={changeDeadline}  />}/>

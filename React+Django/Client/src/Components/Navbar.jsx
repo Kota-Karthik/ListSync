@@ -1,17 +1,6 @@
-import Cookies from "js-cookie";
+
 import { Link } from "react-router-dom";
 const Navbar = () => {
-  const jwt = Cookies.get('jwt');
-  const encryptedData = Cookies.get('encryptedData');
-  const handleLogout = () => {
-
-    Cookies.remove("jwt");
-    Cookies.remove("encryptedData");
-    window.location.reload();
-    navigateTo('/login');
-    
-
-}
   const toggleMenu = () => {
     const navbar = document.getElementById('navbar-default');
     if (navbar) {
@@ -23,7 +12,7 @@ const Navbar = () => {
       <nav className="bg-white border-gray-200 ">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="#" className="flex items-center">
-
+           
             <div className="font-bold text-xl">ListSync</div>
           </a>
           <button
@@ -48,10 +37,15 @@ const Navbar = () => {
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white ">
               <li className="py-2 px-3 "><Link to="/" >Home</Link></li>
               <li className="py-2 px-3 "><Link to="/add-to-do" >Add To-Do</Link></li>
-              {(jwt) && <li className="py-2 px-3 "><Link to="/your-to-do's" >Your To-Dos</Link></li>}
-              {(!jwt) && <li className="py-2 px-3 "><Link to="/log-in">Login</Link></li>}
-              {(!jwt) && <li className="py-2 px-3 "><Link to="/register">Sign Up</Link></li>}
-              {(jwt) && <button className="py-2 px-3  shadow-lg rounded-lg translate-y-[-5px]  bg-[#18A0A9] text-[#FFFFFF] font-medium p-[5px]" onClick={handleLogout}>Logout</button>}
+              <li className="py-2 px-3 "><Link to="/your-to-do's" >Your To-Dos</Link></li>
+              <li className="py-2 px-3 "><Link to="/log-in">Login</Link></li>
+              <li className="py-2 px-3 "><Link to="/register">Sign Up</Link></li>
+              <button className="py-2 px-3  shadow-lg rounded-lg translate-y-[-5px]  bg-[#18A0A9] text-[#FFFFFF] font-medium p-[5px]" ><a href="/login">Logout</a></button>
+              {/* {(!jwt) && <li className="py-2 px-3 "><Link to="/login">Login</Link></li>}
+                            {(!jwt) && <li className="py-2 px-3 "><Link to="/signup">Sign Up</Link></li>}
+                            {(jwt) && <li className="py-2 px-3 "><Link to="/changePass">Change Password</Link></li>}
+
+                            {(jwt) && <button className="py-2 px-3  shadow-lg rounded-lg translate-y-[-5px]  bg-[#18A0A9] text-[#FFFFFF] font-medium p-[5px]" onClick={handleLogout}><a href="/login">Logout</a></button>} */}
             </ul>
           </div>
         </div>

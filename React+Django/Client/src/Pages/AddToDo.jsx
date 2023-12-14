@@ -2,8 +2,7 @@ import Navbar from "../Components/Navbar";
 import WarningBox from "../Components/WarningBox";
 
 const AddToDo = (props) => {
-  const jwt = Cookies.get('jwt');
-
+  
   const postlist = {"title" : props.formData.title,"targetDate": props.formData.targetDate};
  
   const handleAddToDo = () => {
@@ -74,20 +73,11 @@ const AddToDo = (props) => {
           }}
           // value={props.formdata.title}
           placeholder="Enter your to-do title..."
-          className="h-[50px] w-[300px] block border-[1px] border-[#000000] my-[10px] rounded-md"
-        />
-          <input
-          type="text"
-          onChange={(e) => {
-            props.setFormData({ ...props.formData, description: e.target.value });
-          }}
-          // value={props.formdata.title}
-          placeholder="Enter your to-do description..."
-          className="h-[75px] w-[300px] block border-[1px] border-[#000000] my-[10px] rounded-md"
+          className="h-[75px] w-[300px] block"
         />
 
         <input
-          className="h-[40px] w-[300px] block border-[1px] border-[#000000] my-[10px] rounded-md"
+          className="h-[40px] w-[300px] block"
           placeholder="Enter your target to complete to-do"
           type="date"
           // value={props.formdata.targetDate}
@@ -101,7 +91,7 @@ const AddToDo = (props) => {
 
         <button
           id="AddToDo-button"
-          className="w-[100px] h-[30px] border-solid border-2 border-[#555] bg-[#555] text-[#fff] hover:bg-[black] hover:text-[white] hover:border-[black] hover:shadow-xl rounded-md"
+          className="w-[100px] h-[30px] border-solid border-2 border-[#555] bg-[#555] text-[#fff] hover:bg-[black] hover:text-[white] hover:border-[black] hover:shadow-xl"
           type="submit"
           onClick={handleSubmit}
         >
