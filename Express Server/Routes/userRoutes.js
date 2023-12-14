@@ -2,7 +2,7 @@ const express = require("express");
 const userController = require('./../Controllers/userController');
 const authController = require('./../Controllers/authController');
 const passwordController=require('./../Controllers/passwordController');
-const ContactUsController=require('./../Controllers/ContactUsController');
+const listController=require('./../Controllers/listController');
 const router = express.Router();
 const fs = require("fs");
 
@@ -13,8 +13,8 @@ app.use(morgan("dev"));
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.post('/forgotPassword',passwordController.forgotPassword);
-router.post('/sendMessage/:encryptedData',ContactUsController.SendMessage);
-router.get('/getAllMessages',ContactUsController.GetAllMessages)
+router.post('/todo/newList/:encryptedData',listController.createList);
+router.get("/todo/getAllLists/:encryptedData",listController.getAllLists);
 router.route("/:id").get(userController.getUniqueUser).delete(userController.deleteUser);
 router.route("/:encryptedData").patch(passwordController.updatePassword);
 
