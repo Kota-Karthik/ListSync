@@ -19,42 +19,43 @@ function App() {
   const AddToDoButton = document.getElementById("AddToDo-button");
   const jwt = Cookies.get('jwt');
   const [allLists, setallLists] = useState([]);
-
-  // const getAllLists=()=>{
-  //   fetch(`http://localhost:3000/todo`, {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-
-  // })
-  //   .then((res) => {
-  //     if (!res.ok) {
-  //       throw new Error("Network response was not ok");
-  //     }
-  //     return res.json();
-  //   })
-  //   .then((data2) => {
-  //     const { results,data,status } = data2;
-  //     setallLists(data.lists);
-  //     console.log(data.lists);
-  //     // console.log(data2)
-  //     // console.log(allLists);
-
-  //     if (data.status === "Success") {
-  //       console.log("Registered successfully");
-  //     } else if (data.status === "Fail") {
-  //       console.log(data.message);
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //     console.log("An error occurred while registering.");
-  //   });
-  // }
-  // useEffect(() =>{
-  //   getAllLists()
-  // },[])
+  const encryptedData = Cookies.get('encryptedData');
+  
+  const getAllLists=()=>{
+      fetch(`http://localhost:3000/todo/getAllLists/${encryptedData}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+  
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data2) => {
+        const { results,data,status } = data2;
+        setallLists(data.lists);
+        console.log(data.lists);
+        // console.log(data2)
+        // console.log(allLists);
+  
+        if (data.status === "Success") {
+          console.log("Registered successfully");
+        } else if (data.status === "Fail") {
+          console.log(data.message);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        console.log("An error occurred while fetching all lists");
+      });
+    }
+  useEffect(() => {
+    getAllLists()
+  }, [])
 
   // const [allDates,setallDates]=useState([]);
   const [formData, setFormData] = useState({
