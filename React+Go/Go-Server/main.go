@@ -5,14 +5,16 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/ListSync/React+Go/Go-Server/database"
 	"github.com/ListSync/React+Go/Go-Server/utils"
 	"github.com/gorilla/mux"
 )
 
 func main() {
+	
 	checkErr := utils.CheckErr
 	router := mux.NewRouter()
-
+	database.ConnectDB()
 	router.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
 
 		rw.Header().Set("Content-Type", "application/json")
