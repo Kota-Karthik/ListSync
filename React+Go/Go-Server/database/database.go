@@ -28,7 +28,7 @@ func ConnectDB() *mongo.Client {
 }
 
 // Client instance
-// var DB *mongo.Client = ConnectDB()
+var DB *mongo.Client = ConnectDB()
 
 // getting database collections
 func GetCollection(client *mongo.Client, collectionName string) *mongo.Collection {

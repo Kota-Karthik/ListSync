@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	utils.LoadEnv()
 	checkErr := utils.CheckErr
 
 	router := mux.NewRouter()
@@ -20,7 +21,7 @@ func main() {
 	routes.PasswordRouter(router)
 	routes.ListRouter(router)
 
-	fmt.Println("listening to port 6000!!")
-	checkErr(http.ListenAndServe(":6000", router))
+	fmt.Println("listening to port 3000!!")
+	checkErr(http.ListenAndServe(":3000", router))
 
 }
