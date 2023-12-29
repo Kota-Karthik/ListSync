@@ -10,6 +10,24 @@ import (
 	"github.com/gorilla/mux"
 )
 
+func CorsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Set CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+		// Handle preflight requests
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		// Continue to the next handler
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	utils.LoadEnv()
 	checkErr := utils.CheckErr
@@ -17,11 +35,13 @@ func main() {
 	router := mux.NewRouter()
 	database.ConnectDB()
 
-	routes.UserRouter(router)
-	routes.PasswordRouter(router)
+	// Define your routes
 	routes.ListRouter(router)
+	routes.UserRouter(router)
 
-	fmt.Println("listening to port 3000!!")
-	checkErr(http.ListenAndServe(":3000", router))
+	// Apply CORS middleware to the router
+	corsRouter := CorsMiddleware(router)
 
+	fmt.Println("Listening on port 3000!!")
+	checkErr(http.ListenAndServe(":3000", corsRouter))
 }
