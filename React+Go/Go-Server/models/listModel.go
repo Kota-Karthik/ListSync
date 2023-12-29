@@ -8,7 +8,7 @@ import (
 
 type List struct {
 	Id          primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
-	UserId      primitive.ObjectID `bson:"userId,omitempty" json:"userId,omitempty" validate:"required"`
+	UserId      primitive.ObjectID `bson:"userId,omitempty" json:"userId,omitempty"`
 	Title       string             `bson:"title,omitempty" json:"title,omitempty" validate:"required"`
 	Description string             `bson:"description,omitempty" json:"description,omitempty" validate:"required"`
 	TargetDate  time.Time          `bson:"targetDate,omitempty" json:"targetDate,omitempty" validate:"required"`
