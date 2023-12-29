@@ -9,6 +9,6 @@ func UserRouter(router *mux.Router) {
 
 	router.HandleFunc("/signup", userController.SignUp()).Methods("POST")
 	router.HandleFunc("/login", userController.LogIn()).Methods("POST")
-	router.HandleFunc("/getUser/:id", userController.GetAllUsers()).Methods("GET")
+	
 
 }
