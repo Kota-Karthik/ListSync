@@ -42,7 +42,7 @@ const YourToDO = (props) => {
       <Navbar />
 
       <div className=" text-center flex justify-center items-center flex-col overflow-hidden mt-[100px]  ">
-        {props.allLists.map((listVal) => {
+        {props.allLists && props.allLists.map((listVal) => {
           return (
             <div key={listVal._id} className="h-auto min-w-[300px] min-h-[75px] max-w-[300px] m-[20px] inline-block mx-[0px] relative p-[2rem] break-all hover:shadow-xl border-[1px] border-[#555555] hover:border-l-[5px] transition-all  ">
               <h3 className="text-xl font-bold ">{listVal.title} </h3>

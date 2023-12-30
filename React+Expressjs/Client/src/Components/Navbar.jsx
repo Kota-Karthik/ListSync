@@ -14,7 +14,7 @@ const Navbar = () => {
     Cookies.remove("jwt");
     Cookies.remove("encryptedData");
     window.location.reload();
-    navigateTo('/login');
+    navigateTo('/');
     
 }
   const toggleMenu = () => {

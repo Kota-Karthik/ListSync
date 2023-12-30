@@ -19,6 +19,7 @@ function App() {
   const AddToDoButton = document.getElementById("AddToDo-button");
   const jwt = Cookies.get('jwt');
   const [allLists, setallLists] = useState([]);
+  const [count,setCount]=useState(0);
   const encryptedData = Cookies.get('encryptedData');
   
   const getAllLists=()=>{
@@ -39,6 +40,9 @@ function App() {
         const { results,data,status } = data2;
         setallLists(data.lists);
         console.log(data.lists);
+        if(data.lists){
+          setCount(data.lists.length);
+        }
         // console.log(data2)
         // console.log(allLists);
   
@@ -54,7 +58,7 @@ function App() {
       });
     }
   useEffect(() => {
-    getAllLists()
+ { jwt && getAllLists()}
   }, [])
 
   // const [allDates,setallDates]=useState([]);
@@ -65,7 +69,8 @@ function App() {
 
   });
   const [list, setList] = useState("");
-  const count = allLists.length;
+  
+  
   const [deadline, setDeadline] = useState('December 25, 2023')
   const [newDeadline, setNewDeadline] = useState('')
 
