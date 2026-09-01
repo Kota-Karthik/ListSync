@@ -1,0 +1,16 @@
+apiVersion: harness.io/v1
+kind: Resource
+type: database
+identifier: sysid07416_mongo_dev
+name: SYSID-07416 MongoDB (Dev)
+owner: group:account/DevX_Team
+spec:
+  dependsOn:
+  - resource:account/sysid07416_mongo_dev
+  system:
+  - system:account/my_test_system
+metadata:
+  description: MongoDB instance for Fuse services - Dev environment
+  tags:
+  - mongodb
+  - dev
